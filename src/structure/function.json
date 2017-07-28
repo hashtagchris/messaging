@@ -7,6 +7,15 @@
       "direction": "in",
       "connection": "AzureWebJobsServiceBus",
       "accessRights": "Manage"
+    },
+    {
+      ".comment": "Switch from a queue to a topic, so several subscribers can act on the message.",
+      "topicName": "toaugment",
+      "name": "message",
+      "type": "serviceBus",
+      "direction": "out",
+      "connection": "AzureWebJobsServiceBus",
+      "accessRights": "Manage"
     }
   ],
   "disabled": false

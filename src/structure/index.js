@@ -1,15 +1,4 @@
-const azure = require('azure-sb');
-const topic = "toaugment";
-
 module.exports = function (context, inmessage) {
-
-    let customProperties = {
-        hastwitter: inmessage.user.twitter != undefined,
-        hasfacebook: inmessage.user.facebook != undefined,
-        hasinstagram: inmessage.user.instagram != undefined,
-        platform: inmessage.request.platform
-    };
-
     let outmessage = inmessage;
 
     outmessage.social = {};
@@ -48,8 +37,5 @@ module.exports = function (context, inmessage) {
         }
     }
 
-    let serviceBusService = azure.createServiceBusService(process.env.AzureWebJobsServiceBus);
-    serviceBusService.sendTopicMessage(topic, brokeredMessage, function (error) {
-        context.done(error);
-    });
+    context.bindings.outmessage = brokeredMessage;
 }
